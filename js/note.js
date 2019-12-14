@@ -42,6 +42,6 @@ export default function note(url) {
         }
         [audio, delBtn, playBtn, downloadBtn].forEach(val => card.appendChild(val));
 
-    return (card)
+    return (card);
 
 }

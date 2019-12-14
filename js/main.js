@@ -12,4 +12,4 @@ aboutBtn.onclick = e => {
 const display = (recURL) => {
     notes.appendChild(note(recURL, notes));
 }
-rec(recorder,startRec,display);
+rec(recorder, startRec, display);

@@ -28,7 +28,7 @@ const rec = async (recorder, startRec, display) => {
     }
 
     mediaRec.ondataavailable = e => {
-  
+
       if (e.data.size > 0) {
         chunks.push(e.data);
       }
@@ -71,4 +71,4 @@ const rec = async (recorder, startRec, display) => {
 }
 
 
-export default (rec)
+export default (rec);

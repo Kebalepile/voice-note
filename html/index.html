@@ -5,9 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="K.T Motshoana">
+    <meta name="application-name" content="Dira">
+    <meta name="description" content="App discription a voice recorder, you can create voice notes, play them, download for future use or delete noce done">
+    <meta name="theme" content="#FFFFFF">
     <title>Dira</title>
     <link rel="stylesheet" type="text/css" href="../css/main.css" />
+    <link rel="apple-touch-icon" href="../icons/192x192.png" />
+    <link rel="manifest" href="../manifest.json" />
     <script type="module" src="../js/main.js"></script>
+    <script defer>
+      if ("serviceWorker" in navigator) {
+        window.onload = async () => {
+          try{
+            const reg = await navigator.serviceWorker.register("../sw.js");
+            console.log("serviceWorker registered at: ",reg.scope);
+          }
+          catch (err) {
+            console.error(`Bothata ke bo ${err}`)
+          }
+        }
+      }
+    </script>
 </head>
 
 <body>
