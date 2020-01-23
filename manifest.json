@@ -2,7 +2,7 @@
   "author": "K.T Motshoana",
   "name": "DIRA",
   "short_name": "DIRA",
-  "description": "App discription a voice recorder, you can create voice notes, play them, download for future use or delete noce done",
+  "description": "a voice recorder, you can create voice notes, play them, download for future use or delete once done",
   "lang": "en-US",
   "background_color": "#FFFFFF",
   "theme": "#FFFFFF",
@@ -11,22 +11,22 @@
   "scope": "/",
   "icons": [
     {
-      "src": "/icons/144.png",
+      "src": "icons/144.png",
       "sizes": "144x144",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     },
     {
-      "src": "/icons/192.png",
+      "src": "icons/192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     },
     {
-      "src": "/icons/152.png",
-      "sizes": "152x152",
+      "src": "icons/512.png",
+      "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any maskable"
     }
   ]
 }

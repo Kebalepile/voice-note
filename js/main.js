@@ -8,6 +8,7 @@ const recorder = document.querySelector("#recorder"),
 
 aboutBtn.onclick = e => {
     about();
+    e.target.disabled=true;
 }
 const display = (recURL) => {
     notes.appendChild(note(recURL, notes));

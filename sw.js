@@ -11,25 +11,25 @@ const cacheName = "vNote",
 self.oninstall = e => {
   e.waitUntil(caches.open(cacheName)
     .then(cache => {
-      consle.log("cache is open");
+      // console.log("cache is open");
       return cache.addAll(items);
     }));
 
   self.skipWaiting();
-  console.log("serviceWorker installed Babaa!");
+  // console.log("serviceWorker installed Babaa!");
 }
 
 self.onactivate = e => {
   caches.keys()
     .then(cachesNames => {
       return Promise.all(cachesNames.forEach(name => {
-        if (cacheName.indexOf(name) === -1) {
+        if (!cacheName.includes(name)) {
           return caches.delete(name);
         }
       }))
-    }).catch(err => console.error(`Bothata ke cache: ${err}`));
+    }).catch(err => console.error(err));
 
-  console.log("serviceWorker activated");
+  // console.log("serviceWorker activated");
 }
 
 self.onfetch = e => {
@@ -53,5 +53,5 @@ self.onfetch = e => {
         })
         .catch(err => console.error(`Bothata ke fetch: ${err}`)));
     }));
-  console.log("serviceWorker if fetching some files");
+  // console.log("serviceWorker if fetching some files");
 }

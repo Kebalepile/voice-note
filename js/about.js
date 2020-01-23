@@ -17,7 +17,9 @@ export default () => {
     });
 
     document.body.appendChild(card);
+
     card.onclick = e => {
         document.body.removeChild(card);
+        document.querySelector("#about").disabled=false;
     }
 }
