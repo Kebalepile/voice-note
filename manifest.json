@@ -1,31 +1,32 @@
 {
+  "short_name": "Short-NoTe",
+  "name": "Short-NoTe",
+  "description": "a short note scribbler webApp with features such as deadline notification alert, voice record notes.",
   "author": "K.T Motshoana",
-  "name": "DIRA",
-  "short_name": "DIRA",
-  "description": "a voice recorder, you can create voice notes, play them, download for future use or delete once done",
   "lang": "en-US",
-  "background_color": "#FFFFFF",
-  "theme": "#FFFFFF",
-  "display": "standalone",
   "start_url": ".",
+  "background_color": "#FFFF",
+  "theme_color": "#31b1b8",
   "scope": "/",
+  
+  "display": "standalone",
   "icons": [
     {
-      "src": "icons/144.png",
+      "src": "/images/icons/144x144.png",
+      "type": "image/png",
       "sizes": "144x144",
-      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icons/192.png",
+      "src": "/images/icons/192x192.png",
+      "type": "image/png",
       "sizes": "192x192",
-      "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icons/512.png",
-      "sizes": "512x512",
+      "src": "/images/icons/512x512.png",
       "type": "image/png",
+      "sizes": "512x512",
       "purpose": "any maskable"
     }
   ]

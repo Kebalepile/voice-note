@@ -1,57 +1,79 @@
-const cacheName = "vNote",
+const cacheName = "LaterNoteTaker",
   items = [
     "/",
-    "/html/index.html",
-    "/css/main.css",
-    "/js/main.js",
-    "/js/about.js",
-    "/js/media.js",
-    "/js/note.js"
+    "/index.html",
+    "/main.css",
+    "/main.js",
+    "/components/info.js",
+    "/components/note.js",
+    "/components/notelist.js",
+    "/components/TextnoteForm.js",
+    "/components/VoicenoteForm.js",
+    "/database/indexDB.js",
+    "/utils/notification.js",
+    "/utils/toggle.js",
+    "/images/1.png",
+    "/images/2.png",
+    "/images/icons/txt.png",
+    "/images/icons/mp3.png",
+    "/images/icons/trash.svg",
   ];
-self.oninstall = e => {
-  e.waitUntil(caches.open(cacheName)
-    .then(cache => {
-      // console.log("cache is open");
+
+self.addEventListener("install", (e) => {
+  // console.log("service worker being installed");
+  // perform install steps
+  e.waitUntil(
+    caches.open(cacheName).then((cache) => {
+    //   console.log("cache is open");
       return cache.addAll(items);
-    }));
+    })
+  );
 
   self.skipWaiting();
-  // console.log("serviceWorker installed Babaa!");
-}
+  // console.log("service worker installed");
+});
 
-self.onactivate = e => {
-  caches.keys()
-    .then(cachesNames => {
-      return Promise.all(cachesNames.forEach(name => {
+self.addEventListener("activate", (e) => {
+  caches.keys().then((cacheNames) => {
+    return Promise.all(
+      cacheNames.map((name) => {
         if (!cacheName.includes(name)) {
           return caches.delete(name);
         }
-      }))
-    }).catch(err => console.error(err));
+      })
+    );
+  });
 
-  // console.log("serviceWorker activated");
-}
+  // console.log("service worker activated")
+});
 
-self.onfetch = e => {
-  e.respondWith(caches.match(e.request)
-    .then(cacheRes => {
-      if (cacheRes) {
-        return cacheRes;
+self.addEventListener("fetch", (e) => {
+  // console.log("service worker is serving the asset.");
+  e.respondWith(
+    caches.match(e.request).then((res) => {
+      if (res) {
+        return res;
       }
-      return (fetch(e.request, {
-          credientials: "include"
-        })
-        .then(fetchRes => {
-          if (!fetchRes || fetchRes !== 200 || fetchRes !== "basic") {
-            return (fetchRes);
+      return fetch(e.request, {
+        credentials: "include",
+      })
+        .then((netWorkResponse) => {
+          if (
+            !netWorkResponse ||
+            netWorkResponse !== 200 ||
+            netWorkResponse.type !== "basic"
+          ) {
+            return netWorkResponse;
           }
-          let cacheNewItem = fetchRes.clone();
-          caches.open(cacheName)
-            .then(cache => cache.put(cacheNewItem))
-            .catch(err => console.error(`Bothata ka cache: ${err}`));
-          return (fetchRes);
+          let resToCache = netWorkResponse.clone();
+          caches.open(cacheName).then((cache) => {
+            cache.put(e.request, resToCache);
+          });
+          return netWorkResponse;
         })
-        .catch(err => console.error(`Bothata ke fetch: ${err}`)));
-    }));
-  // console.log("serviceWorker if fetching some files");
-}
+        .catch((err) => {
+          // console.error(err)
+        });
+    })
+  );
+});
